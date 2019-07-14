@@ -13,7 +13,7 @@ class DoubanSpiderSpider(scrapy.Spider):
     # 默认解析方法
     def parse(self, response):
         movie_list = response.xpath('//div[@class="article"]/ol[@class="grid_view"]/li')
-        print(type(movie_list)) # <class 'scrapy.selector.unified.SelectorList'>
+        # print(type(movie_list)) # <class 'scrapy.selector.unified.SelectorList'>
         for i_item in movie_list:
         	douban_item = DoubanspiderItem()
         	douban_item['serial_number'] = i_item.xpath('./div[@class="item"]//em/text()').extract_first()

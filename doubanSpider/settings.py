@@ -62,11 +62,13 @@ DOWNLOAD_DELAY = 0.5
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
+
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'doubanSpider.pipelines.DoubanspiderPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'doubanSpider.pipelines.DoubanspiderPipeline': 300,
+   'doubanSpider.pipelines.DoubanspiderMongo': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -88,3 +90,7 @@ DOWNLOAD_DELAY = 0.5
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+MONGO_IP = "localhost"
+MONGO_PORT = 27017
+MONGO_DB = "douban"
+MONGO_COLLECTION = "douban_moive"
