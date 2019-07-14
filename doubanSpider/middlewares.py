@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+import random
+import base64
+from doubanSpider.settings import MY_USER_AGENT
 # Define here the models for your spider middleware
 #
 # See documentation in:
@@ -101,3 +103,19 @@ class DoubanspiderDownloaderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class MyUserAgentMiddleware(object):
+    def process_request(self, request, spider):
+        user_agent = random.choice(MY_USER_AGENT)
+        request.headers["User_Agent"] = user_agent
+
+class MyProxyMiddleware(object):
+    def process_request(self, request, spider):
+        request.meta['proxy'] = "http://114.67.228.126:16819"
+        # 代理的用户名和密码
+        proxy_name_pass = b'309435365:szayclhp'
+        # 对密码进行加密
+        encode_pass_name = base64.b64encode(proxy_name_pass)
+        # 将加密后的密码转化为字符串
+        request.headers["Proxy_Authorization"] = "Basic " + encode_pass_name.decode()
+

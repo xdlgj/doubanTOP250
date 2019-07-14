@@ -26,4 +26,4 @@ class DoubanspiderMongo(object):
 	def process_item(self, item, spider):
 		# 插入数据
 		self.myCollection.insert(dict(item))
-		return item
+		
